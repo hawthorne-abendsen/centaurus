@@ -15,14 +15,13 @@ deploy:
   tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
     APPVEYOR_REPO_TAG: true
-# builds on tags will publish all nupkgs to GitHub as a Draft release
 before_deploy:
   - ps: dotnet build -c Release
   - ps: dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
   - ps: dotnet publish Centaurus.Auditor -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
-  #- ps: dotnet publish Centaurus.Alpha -r linux-x64 -c Release /p:PublishSingleFile=true -o Release/linux-x64 /p:DebugType=None
-  #- ps: dotnet publish Centaurus.Auditor -r linux-x64 -c Release /p:PublishSingleFile=true -o Release/linux-x64 /p:DebugType=None
-  #- ps: dotnet publish Centaurus.Alpha -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
-  #- ps: dotnet publish Centaurus.Auditor -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
+  - ps: dotnet publish Centaurus.Alpha -r linux-x64 -c Release /p:PublishSingleFile=true -o Release/linux-x64 /p:DebugType=None
+  - ps: dotnet publish Centaurus.Auditor -r linux-x64 -c Release /p:PublishSingleFile=true -o Release/linux-x64 /p:DebugType=None
+  - ps: dotnet publish Centaurus.Alpha -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
+  - ps: dotnet publish Centaurus.Auditor -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
   - ps: 7z a Release.zip Release
-  - ps: Push-AppveyorArtifact Release.zip
+  - ps: (Get-ChildItem -Directory Release) | Foreach-Object { $currentZip = "$_.zip"; 7z a $currentZip "Release/$_"; Push-AppveyorArtifact $currentZip }
