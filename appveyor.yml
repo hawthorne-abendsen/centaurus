@@ -10,7 +10,6 @@ test_script:
   - cmd: dotnet test 
 before_package:
   - cmd: 
-    - |- 
       dotnet build -c Release
       dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Releases/win-x64 
       dotnet publish Centaurus.Auditor -r win-x64 -c Release /p:PublishSingleFile=true -o Releases/win-x64
