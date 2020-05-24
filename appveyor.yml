@@ -2,13 +2,12 @@ init:
   # If there's a tag, use that as the version.
   - ps: >-
       if($env:APPVEYOR_REPO_TAG -eq "true"){Update-AppveyorBuild -Version "$env:APPVEYOR_REPO_TAG_NAME"}
-restore_script:
+before_build:
   - cmd: dotnet restore 
-test_script:
+build_script:
   - cmd: dotnet build 
+test_script:
   - cmd: dotnet test 
-on_success:
-  - ps: .\coverage.ps1 -UploadCodecov
 environment:
   global:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
