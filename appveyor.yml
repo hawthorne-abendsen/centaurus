@@ -9,10 +9,6 @@ build_script:
 test_script:
   - cmd: dotnet test 
 os: Visual Studio 2019
-artifacts:
-- path: 'Release.zip'
-  name: release
-# builds on tags will publish all nupkgs to GitHub as a Draft release
 deploy:
   release: $(appveyor_build_version)
   provider: GitHub
@@ -20,7 +16,11 @@ deploy:
     secure: VgtP6jKIZM4Rx5hfJJmT60600yFUf0rjMaGCaIsKxx4s5WPQ/AjyDOxq27MNNdF1
   artifact: release
   on:
-    appveyor_repo_tag: true
+    APPVEYOR_REPO_TAG: true
+artifacts:
+- path: 'Release.zip'
+  name: release
+# builds on tags will publish all nupkgs to GitHub as a Draft release
 before_deploy:
   - cmd: 
       dotnet build -c Release
