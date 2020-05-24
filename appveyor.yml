@@ -6,8 +6,10 @@ before_build:
   - cmd: dotnet restore 
 build_script:
   - cmd: dotnet build 
+before_test:
 test_script:
   - cmd: dotnet test 
+after_test:
 environment:
   global:
     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
