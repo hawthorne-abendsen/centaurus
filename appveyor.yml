@@ -15,6 +15,7 @@ deploy:
   auth_token:
     secure: VgtP6jKIZM4Rx5hfJJmT60600yFUf0rjMaGCaIsKxx4s5WPQ/AjyDOxq27MNNdF1
   artifact: release
+  tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
     APPVEYOR_REPO_TAG: true
 artifacts:
