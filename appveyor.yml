@@ -26,6 +26,7 @@ before_deploy:
   #- ps: dotnet publish Centaurus.Auditor -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
   - ps: 7z a Release.zip Release
   - ps: Push-AppveyorArtifact Release.zip
+  - ps: Write-Output Artifacts pushed
 artifacts:
 - path: Release.zip
   name: release_zip
