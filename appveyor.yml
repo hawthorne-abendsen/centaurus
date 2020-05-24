@@ -14,12 +14,9 @@ deploy:
   tag: $(APPVEYOR_REPO_TAG_NAME)
   on:
     APPVEYOR_REPO_TAG: true
-artifacts:
-- path: 'Release.zip'
-  name: release
 # builds on tags will publish all nupkgs to GitHub as a Draft release
 before_deploy:
-  - cmd: 
+  - ps: >- 
       dotnet build -c Release
       dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
       dotnet publish Centaurus.Auditor -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
@@ -28,3 +25,6 @@ before_deploy:
       dotnet publish Centaurus.Alpha -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
       dotnet publish Centaurus.Auditor -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
       7z a Release.zip Release
+artifacts:
+- path: 'Release.zip'
+  name: release
