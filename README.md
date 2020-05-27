@@ -1,6 +1,6 @@
 ![](docs/centaurus256.png)
 
-# Project Centaurus
+# Project Centaurus 
 
 Project Centaurus is the second layer payment network, exchange, and scaling solution 
 for [Stellar Network](https://www.stellar.org/).
