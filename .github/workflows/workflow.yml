@@ -62,7 +62,7 @@ jobs:
           zip $f $dir
           assets+=("-a" "$f")
         done 
-        hub release create "${assets[@]}" "Release v$VERSION" "${${{steps.changelog_reader.outputs.log_entry}}:-v$VERSION"
+        hub release create "${assets[@]}" "Release v$VERSION" "${{steps.changelog_reader.outputs.log_entry}}:-v$VERSION"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
