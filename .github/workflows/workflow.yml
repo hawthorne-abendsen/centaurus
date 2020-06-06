@@ -22,7 +22,14 @@ jobs:
       uses: hawthorne-abendsen/dotnet-version-tool@master
       with:
         version: ${{ env.VERSION }}
-    - run: cat CHANGELOG.md
+    - name: Release
+      run: |
+        set -x
+        assets=()
+        assets+=("-a" "Centaurus.sln")
+        hub release create "${assets[@]}" "Release v$VERSION  v$VERSION"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Version bump
@@ -35,14 +42,6 @@ jobs:
       with:
         version: ${{ env.VERSION }}
         path: ./CHANGELOG.md
-    - name: Release
-      run: |
-        set -x
-        assets=()
-        assets+=("-a" "Centaurus.sln")
-        hub release create "${assets[@]}" "Release v$VERSION" "v$VERSION"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
