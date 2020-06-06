@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Centaurus.Xdr</RootNamespace>
-  </PropertyGroup>
+  <AssemblyVersion>1.0.4</AssemblyVersion><FileVersion>1.0.4</FileVersion></PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Reflection.Emit" Version="4.6.0" />
+    <PackageReference Include="System.Reflection.Emit" Version="4.6.0"/>
   </ItemGroup>
 
 </Project>
