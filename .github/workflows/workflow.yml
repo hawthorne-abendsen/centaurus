@@ -27,11 +27,11 @@ jobs:
       with:
         ref: release-test
     - name: Get Changelog Entry
-        id: changelog_reader
-        uses: mindsers/changelog-reader-action@v1.1.0
-        with:
-          version: ${{ env.VERSION }}
-          path: ./CHANGELOG.md
+      id: changelog_reader
+      uses: mindsers/changelog-reader-action@v1.1.0
+      with:
+        version: ${{ env.VERSION }}
+        path: ./CHANGELOG.md
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
