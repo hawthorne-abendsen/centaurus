@@ -51,18 +51,7 @@ jobs:
           f="${dir%/}.zip"; 
           zip $f $dir; 
         done 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.VERSION }}
-        release_name: Release v${{ env.VERSION }}
-        body: ${{ steps.changelog_reader.outputs.log_entry }}
-        draft: false
-        prerelease: false
-    - name: Upload assets
+    - name: Release
       run: |
         cd Release
         set -x
@@ -73,7 +62,7 @@ jobs:
           zip $f $dir
           assets+=("-a" "$f")
         done 
-        tag_name="$VERSION"
-        hub release edit "${assets[@]}" -m "$tag_name" -t "$tag_name"
+        cd
+        hub release create "${assets[@]}" "$VERSION" "${steps.changelog_reader.outputs.log_entry}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
