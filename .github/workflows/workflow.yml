@@ -1,0 +1,63 @@
+name: .NET Core
+
+on: [push, pull_request]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: contains(github.ref, 'refs/tags/r')
+    steps:
+    - uses: actions/checkout@v2
+    - name: Get version
+      run: echo "::set-env name=VERSION::${ref//refs\/tags\/r/}"
+    - name: Update changelog
+      uses: thomaseizinger/keep-a-changelog-new-release@master
+      with:
+        version: ${{ env.VERSION }}
+    - name: Set projects version 
+      uses: hawthorne-abendsen/dotnet-version-tool@master
+      with:
+        version: ${{ env.VERSION }}
+    - run: cat CHANGELOG.md
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Version bump
+        branch: release-test
+    - uses: actions/checkout@v2
+      with:
+        ref: release-test
+    - name: Get Changelog Entry
+        id: changelog_reader
+        uses: mindsers/changelog-reader-action@v1.1.0
+        with:
+          version: ${{ env.VERSION }}
+          path: ./CHANGELOG.md
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build release
+      run: |
+        dotnet build -c Release
+        dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
+        cd Release
+        files=""for dir in *
+        do 
+          f="${dir%/}.zip"; 
+          zip $f $dir; 
+          files+=$f" "
+        done 
+        echo "::set-env name=ASSETS::${files}"
+    - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.VERSION }}
+          release_name: Release ${{ github.ref }}
+          body: ${{ steps.changelog_reader.outputs.log_entry }}
+          draft: false
+          prerelease: false
