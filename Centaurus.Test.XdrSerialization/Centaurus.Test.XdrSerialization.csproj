@@ -6,7 +6,7 @@
     <IsPackable>false</IsPackable>
 
     <RootNamespace>Centaurus.Test</RootNamespace>
-  <AssemblyVersion>1.0.27</AssemblyVersion><FileVersion>1.0.27</FileVersion></PropertyGroup>
+  <AssemblyVersion>1.0.28</AssemblyVersion><FileVersion>1.0.28</FileVersion></PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.9.0"/>
