@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Get version
-      run: echo "::set-env name=VERSION::${ref//refs\/tags\/r/}"
+      run: echo "::set-env name=VERSION::${GITHUB_REF//refs\/tags\/r/}"
     - name: Update changelog
       uses: thomaseizinger/keep-a-changelog-new-release@master
       with:
