@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
+  <AssemblyVersion>1.0.4</AssemblyVersion><FileVersion>1.0.4</FileVersion></PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MongoDB.Driver" Version="2.10.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.1"/>
   </ItemGroup>
 
 </Project>
