@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+-   Feature A
+-   Feature B
+-   GitHub Actions as a CI system
+-   GitHub Release as an Artifactory system
+
 ## [1.0.6] - 2020-06-06
 
 ## [1.0.5] - 2020-06-06
