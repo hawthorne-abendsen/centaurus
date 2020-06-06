@@ -8,6 +8,8 @@ jobs:
     if: contains(github.ref, 'refs/tags/r')
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: release-test
     - name: Get version
       run: echo "::set-env name=VERSION::${GITHUB_REF//refs\/tags\/r/}"
     - name: Update changelog
@@ -22,7 +24,6 @@ jobs:
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Version bump
-        branch: release-test
     - uses: actions/checkout@v2
       with:
         ref: release-test
