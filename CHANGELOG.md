@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.15] - 2020-06-06
+
 ## [1.0.14] - 2020-06-06
 
 ## [1.0.13] - 2020-06-06
@@ -36,7 +38,9 @@ All notable changes to this project will be documented in this file.
 -   GitHub Actions as a CI system
 -   GitHub Release as an Artifactory system
 
-[Unreleased]: https://github.com/hawthorne-abendsen/centaurus/compare/1.0.14...HEAD
+[Unreleased]: https://github.com/hawthorne-abendsen/centaurus/compare/1.0.15...HEAD
+
+[1.0.15]: https://github.com/hawthorne-abendsen/centaurus/compare/1.0.14...1.0.15
 
 [1.0.14]: https://github.com/hawthorne-abendsen/centaurus/compare/1.0.13...1.0.14
 
