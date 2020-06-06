@@ -73,7 +73,7 @@ jobs:
           zip $f $dir
           assets+=("-a" "$f")
         done 
-        tag_name="${env.VERSION}"
+        tag_name="$VERSION"
         hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
