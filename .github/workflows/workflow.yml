@@ -45,12 +45,6 @@ jobs:
       run: |
         dotnet build -c Release
         dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
-        cd Release
-        for dir in *
-        do 
-          f="${dir%/}.zip"; 
-          zip $f $dir; 
-        done 
     - name: Release
       run: |
         cd Release
@@ -62,7 +56,7 @@ jobs:
           zip $f $dir
           assets+=("-a" "$f")
         done 
-        hub release create "${assets[@]}" "Release v$VERSION" "${{steps.changelog_reader.outputs.log_entry}}:-v$VERSION"
+        hub release create "${assets[@]}" "Release v$VERSION" "${${{steps.changelog_reader.outputs.log_entry}}:-v$VERSION}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
