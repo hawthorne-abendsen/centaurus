@@ -62,7 +62,6 @@ jobs:
           zip $f $dir
           assets+=("-a" "$f")
         done 
-        cd
         hub release create "${assets[@]}" "$VERSION" "${{steps.changelog_reader.outputs.log_entry}}"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
