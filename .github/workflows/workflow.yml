@@ -4,12 +4,14 @@ on: [push, pull_request]
 
 jobs:
   release:
+    env:
+      BRANCH: release-test
     runs-on: ubuntu-latest
     if: contains(github.ref, 'refs/tags/r')
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: release-test
+        ref: ${{ env.BRANCH }}
     - name: Get version
       run: echo "::set-env name=VERSION::${GITHUB_REF//refs\/tags\/r/}"
     - name: Update changelog
@@ -26,7 +28,7 @@ jobs:
         commit_message: Version bump
     - uses: actions/checkout@v2
       with:
-        ref: release-test
+        ref: ${{ env.BRANCH }}
     - name: Get Changelog Entry
       id: changelog_reader
       uses: mindsers/changelog-reader-action@v1.1.0
@@ -44,14 +46,11 @@ jobs:
         dotnet build -c Release
         dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
         cd Release
-        files=""
         for dir in *
         do 
           f="${dir%/}.zip"; 
           zip $f $dir; 
-          files+=$f" "
         done 
-        echo "::set-env name=ASSETS::${files}"
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -63,3 +62,18 @@ jobs:
         body: ${{ steps.changelog_reader.outputs.log_entry }}
         draft: false
         prerelease: false
+    - name: Upload assets
+      run: |
+        cd Release
+        set -x
+        assets=()
+        for dir in *
+        do 
+          f="${dir%/}.zip" 
+          zip $f $dir
+          assets+=("-a" "$f")
+        done 
+        tag_name="${env.VERSION}"
+        hub release create "${assets[@]}" -m "$tag_name" "$tag_name"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
