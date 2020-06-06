@@ -37,9 +37,9 @@ jobs:
         path: ./CHANGELOG.md
     - name: Release
       run: |
-        cd Release
         set -x
         assets=()
+        assets+=("-a" "Centaurus.sln")
         hub release create "${assets[@]}" "Release v$VERSION" "v$VERSION"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
