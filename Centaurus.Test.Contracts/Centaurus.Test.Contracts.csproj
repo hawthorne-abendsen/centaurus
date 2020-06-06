@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Centaurus.Test.Contracts</AssemblyName>
     <RootNamespace>Centaurus.Test</RootNamespace>
-  <AssemblyVersion>1.0.26</AssemblyVersion><FileVersion>1.0.26</FileVersion></PropertyGroup>
+  <AssemblyVersion>1.0.27</AssemblyVersion><FileVersion>1.0.27</FileVersion></PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Centaurus.Xdr\Centaurus.Xdr.csproj"/>
