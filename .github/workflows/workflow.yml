@@ -74,6 +74,6 @@ jobs:
           assets+=("-a" "$f")
         done 
         tag_name="$VERSION"
-        hub release edit -a "${assets[@]}" -m "$tag_name" -t "$tag_name"
+        hub release edit "${assets[@]}" -m "$tag_name" -t "$tag_name"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
