@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-  <AssemblyVersion>1.0.24</AssemblyVersion><FileVersion>1.0.24</FileVersion></PropertyGroup>
+  <AssemblyVersion>1.0.25</AssemblyVersion><FileVersion>1.0.25</FileVersion></PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82"/>
