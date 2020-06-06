@@ -22,20 +22,6 @@ jobs:
       uses: hawthorne-abendsen/dotnet-version-tool@master
       with:
         version: ${{ env.VERSION }}
-    - name: Release
-      run: |
-        set -x
-        assets=()
-        assets+=("-a" "Centaurus.sln")
-        hub release create "${assets[@]}" -m "v$VERSION" -m "##v$VERSION" "$VERSION"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Version bump
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ env.BRANCH }}
     - name: Get Changelog Entry
       id: changelog_reader
       uses: mindsers/changelog-reader-action@v1.1.0
@@ -63,7 +49,11 @@ jobs:
           zip $f $dir
           assets+=("-a" "$f")
         done 
-        hub release create "${assets[@]}" "Release v$VERSION" "${${{steps.changelog_reader.outputs.log_entry}}:-v$VERSION}"
+        hub release create "${assets[@]}" -m "Release v$VERSION" -m "${{steps.changelog_reader.outputs.log_entry}}" "v$VERSION"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Commit changes
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Version bump
         
