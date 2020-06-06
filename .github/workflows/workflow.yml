@@ -22,12 +22,14 @@ jobs:
       uses: hawthorne-abendsen/dotnet-version-tool@master
       with:
         version: ${{ env.VERSION }}
-    - name: Get Changelog Entry
+    - name: Get changelog entry
       id: changelog_reader
       uses: mindsers/changelog-reader-action@v1.1.0
       with:
         version: ${{ env.VERSION }}
         path: ./CHANGELOG.md
+    - name: Delete trigger tag
+      run: git push --delete origin "r$VERSION"
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -38,6 +40,11 @@ jobs:
       run: |
         dotnet build -c Release
         dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
+        dotnet publish Centaurus.Auditor -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
+        dotnet publish Centaurus.Alpha -r linux-x64 -c Release /p:PublishSingleFile=true -o Release/linux-x64 /p:DebugType=None
+        dotnet publish Centaurus.Auditor -r linux-x64 -c Release /p:PublishSingleFile=true -o Release/linux-x64 /p:DebugType=None
+        dotnet publish Centaurus.Alpha -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
+        dotnet publish Centaurus.Auditor -r osx-x64 -c Release /p:PublishSingleFile=true -o Release/osx-x64 /p:DebugType=None
     - name: Release
       run: |
         cd Release
