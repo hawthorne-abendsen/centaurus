@@ -3,15 +3,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Centaurus.Test</RootNamespace>
-  </PropertyGroup>
+  <AssemblyVersion>1.0.4</AssemblyVersion><FileVersion>1.0.4</FileVersion></PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\Centaurus.Xdr.ContractGenerator\Centaurus.Xdr.ContractGenerator.csproj" />
-    <ProjectReference Include="..\Centaurus.Test.Contracts\Centaurus.Test.Contracts.csproj" />
+    <ProjectReference Include="..\Centaurus.Xdr.ContractGenerator\Centaurus.Xdr.ContractGenerator.csproj"/>
+    <ProjectReference Include="..\Centaurus.Test.Contracts\Centaurus.Test.Contracts.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Serializers\" />
+    <Folder Include="Serializers\"/>
   </ItemGroup>
 
 </Project>

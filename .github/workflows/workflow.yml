@@ -44,7 +44,8 @@ jobs:
         dotnet build -c Release
         dotnet publish Centaurus.Alpha -r win-x64 -c Release /p:PublishSingleFile=true -o Release/win-x64 /p:DebugType=None
         cd Release
-        files=""for dir in *
+        files=""
+        for dir in *
         do 
           f="${dir%/}.zip"; 
           zip $f $dir; 
