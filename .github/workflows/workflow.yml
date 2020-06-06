@@ -35,6 +35,14 @@ jobs:
       with:
         version: ${{ env.VERSION }}
         path: ./CHANGELOG.md
+    - name: Release
+      run: |
+        cd Release
+        set -x
+        assets=()
+        hub release create "${assets[@]}" "Release v$VERSION" "v$VERSION"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
