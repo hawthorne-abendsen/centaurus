@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Centaurus.Test</RootNamespace>
-  <AssemblyVersion>1.0.20</AssemblyVersion><FileVersion>1.0.20</FileVersion></PropertyGroup>
+  <AssemblyVersion>1.0.24</AssemblyVersion><FileVersion>1.0.24</FileVersion></PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Centaurus.Xdr.ContractGenerator\Centaurus.Xdr.ContractGenerator.csproj"/>
