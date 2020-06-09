@@ -77,9 +77,7 @@ jobs:
     - uses: oleksiyrudenko/gha-git-credentials@v1
       with:
         token: '${{ secrets.GITHUB_TOKEN }}'
-    - name: Amend changes
+    - name: Amend last commit
       run: | 
-        git add -A
-        git commit --amend --no-edit
-        git push -f origin ${{env.BRANCH}}
-        
+        git commit --amend --no-edit -a
+        git push origin ${{env.BRANCH}}
