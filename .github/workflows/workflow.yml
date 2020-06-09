@@ -43,7 +43,7 @@ jobs:
       with:
         version: ${{ env.VERSION }}
         path: ./CHANGELOG.md
-    - name: Delete trigger tag
+    - name: Remove trigger tag
       run: git push --delete origin "r$VERSION"
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -74,8 +74,6 @@ jobs:
         hub release create "${assets[@]}" -m "Release v$VERSION" -m "${{steps.changelog_reader.outputs.log_entry}}" "v$VERSION"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Commit changes
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Version ${{ env.VERSION }}
+    - name: Amend changes
+      run: git push --delete origin "r$VERSION"
         
