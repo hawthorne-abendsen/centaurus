@@ -74,6 +74,9 @@ jobs:
         hub release create "${assets[@]}" -m "Release v$VERSION" -m "${{steps.changelog_reader.outputs.log_entry}}" "v$VERSION"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: oleksiyrudenko/gha-git-credentials@v1
+      with:
+        token: '${{ secrets.GITHUB_TOKEN }}'
     - name: Amend changes
       run: | 
         git add -A
