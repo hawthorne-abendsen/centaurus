@@ -6,7 +6,7 @@
     <IsPackable>false</IsPackable>
 
     <RootNamespace>Centaurus.Test</RootNamespace>
-  <AssemblyVersion>1.0.31</AssemblyVersion><FileVersion>1.0.31</FileVersion></PropertyGroup>
+  <AssemblyVersion>1.1.1</AssemblyVersion><FileVersion>1.1.1</FileVersion></PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="nunit" Version="3.12.0"/>
