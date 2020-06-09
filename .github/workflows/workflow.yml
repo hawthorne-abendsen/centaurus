@@ -68,7 +68,7 @@ jobs:
         for dir in *
         do 
           f="${dir%/}.zip" 
-          zip $f $dir
+          zip -r $f $dir
           assets+=("-a" "$f")
         done 
         hub release create "${assets[@]}" -m "Release v$VERSION" -m "${{steps.changelog_reader.outputs.log_entry}}" "v$VERSION"
