@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Centaurus.Test</RootNamespace>
-  <AssemblyVersion>1.0.29</AssemblyVersion><FileVersion>1.0.29</FileVersion></PropertyGroup>
+  <AssemblyVersion>1.0.31</AssemblyVersion><FileVersion>1.0.31</FileVersion></PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.12.0"/>
