@@ -75,5 +75,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Amend changes
-      run: git push --delete origin "r$VERSION"
+      run: | 
+        git add -A
+        git commit --amend --no-edit
+        git push -f origin ${{env.BRANCH}}
         
