@@ -80,4 +80,5 @@ jobs:
     - name: Amend last commit
       run: | 
         git commit --amend --no-edit -a
+        GIT_EDITOR=true git rebase -X theirs
         git push origin ${{env.BRANCH}}
