@@ -6,8 +6,8 @@
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
-    <AssemblyVersion>1.0.28</AssemblyVersion>
-    <FileVersion>1.0.28</FileVersion>
+    <AssemblyVersion>1.0.29</AssemblyVersion>
+    <FileVersion>1.0.29</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
