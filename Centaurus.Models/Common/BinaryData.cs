@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using Centaurus.Xdr;
+using MessagePack;
 
 namespace Centaurus.Models
 {
+    [MessagePackObject]
     [XdrContract]
     public abstract class BinaryData : IEquatable<BinaryData>
     {
+        [IgnoreMember]
         public abstract int ByteLength { get; }
 
         private byte[] _Data;
 
+        [Key(0)]
         [XdrField(0)]
         public byte[] Data
         {
